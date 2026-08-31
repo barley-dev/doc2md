@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+
+# Build artefact — compile from pdf2png.swift, see README
+/pdf2png
+
+# Local working directories
+Inbox/
+Output/

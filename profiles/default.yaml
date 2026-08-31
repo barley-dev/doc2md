@@ -1,0 +1,8 @@
+name: default
+description: "Minimal profile — no noise filtering, generic VLM prompt"
+vlm:
+  prompt_file: prompts/default.txt
+  max_tokens: 1024
+noise:
+  rules: []
+  safety_threshold: 150

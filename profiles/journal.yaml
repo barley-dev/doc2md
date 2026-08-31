@@ -1,0 +1,89 @@
+name: journal
+description: "Academic journal papers — OA watermarks, journal headers, chemistry VLM"
+vlm:
+  prompt_file: prompts/journal.txt
+  max_tokens: 1024
+noise:
+  rules:
+    # OA watermark patterns
+    - pattern: "This\\s+article\\s+has\\s+been\\s+published.*?Wiley\\s+Online\\s+Library"
+      flags: IGNORECASE
+      description: "Wiley download stamp"
+    - pattern: "Downloaded\\s+via\\s+.*?\\s+on\\s+\\w+\\s+\\d+,\\s+\\d{4}"
+      flags: IGNORECASE
+      description: "ACS download stamp"
+    - pattern: "See\\s+https://pubs\\.acs\\.org/sharing[Gg]uidelines"
+      flags: IGNORECASE
+      description: "ACS sharing guidelines"
+    - pattern: "Published\\s+on\\s+\\d+\\s+\\w+\\s+\\d{4}\\.\\s+Downloaded\\s+by"
+      flags: IGNORECASE
+      description: "RSC download stamp"
+    - pattern: "Creative\\s+Commons\\s+Attribution.*?License"
+      flags: IGNORECASE
+      description: "Creative Commons license line"
+    - pattern: "^\\s*\\(\\s*\\d+\\s+of\\s+\\d+\\s*\\)\\s*\\d{8}\\s*,\\s*\\d{4}"
+      description: "Wiley page count"
+    - pattern: "Wiley\\s+Online\\s+Library.*?Terms\\s+and\\s+Conditions"
+      flags: IGNORECASE
+      description: "Wiley Terms and Conditions"
+    # Journal header patterns
+    - pattern: "^\\s*(?:####\\s*)?(?:Chem\\.\\s*Ber\\.|Chern\\.\\s*Ber\\.)\\s*\\d+\\s*[\\s,(]\\s*\\d{4}"
+      description: "JH#0: Chem. Ber. header"
+    - pattern: "^\\s*(?:####\\s*)?(?:\\d{4,5}\\s+)?(?:Notes\\s+)?J\\.\\s*Org\\.\\s*Chem\\.,\\s*Vol\\.\\s*\\d+"
+      description: "JH#1: J. Org. Chem. header"
+    - pattern: "^\\s*\\d{4,5}\\s+[A-Z]\\.\\s*(?:-[A-Z]\\.)?\\s*[A-Z][a-z]+\\s*$"
+      description: "JH#2: Author abbreviation line"
+    - pattern: "www\\.eurjoc\\.org"
+      flags: IGNORECASE
+      description: "JH#3: eurjoc.org URL"
+    - pattern: "©\\s*\\d{4}\\s*(?:Wiley-VCH|The\\s+Authors)"
+      flags: IGNORECASE
+      description: "JH#4: Wiley-VCH copyright line"
+    - pattern: "^\\s*(?:DOI:?\\s*)?(?:https?://)?doi\\.org/10\\.\\d{4,}/\\S+\\s*$"
+      flags: IGNORECASE
+      description: "JH#5: DOI line"
+    - pattern: "^\\s*\\d{4,5}\\s*[-–]\\s*\\d{4,5}\\s*$"
+      description: "JH#6: Page range line"
+    - pattern: "\\bRESEARCH\\s+ARTICLE\\b.*\\b\\w+\\.(?:com|org|net)\\b"
+      flags: IGNORECASE
+      description: "JH#7: Wiley RESEARCH ARTICLE running header"
+    - pattern: "\\b\\w+(?:synth|catal|chem|org|eur|joc)\\w*\\.(?:com|org)\\b"
+      flags: IGNORECASE
+      description: "JH#8: Wiley journal domain URLs"
+    - pattern: "pubs\\.acs\\.org/\\w+"
+      flags: IGNORECASE
+      description: "JH#9: ACS journal running header"
+    - pattern: "^\\s*Cite\\s+This:"
+      flags: IGNORECASE
+      description: "JH#10: ACS Cite This line"
+    - pattern: "^\\s*#{1,3}\\s*ACCESS\\s*$"
+      flags: IGNORECASE
+      description: "JH#11: ACS ACCESS noise line"
+    - pattern: "Metrics\\s*&\\s*More|Article\\s+Recommendations"
+      flags: IGNORECASE
+      description: "JH#12: ACS Metrics & More"
+    - pattern: "[*\\s]*s[iı]\\s+Supporting\\s+Information"
+      flags: IGNORECASE
+      description: "JH#13: ACS supporting information noise"
+    - pattern: "\\b(?:Org\\.\\s*Lett\\.|J\\.\\s*Am\\.\\s*Chem\\.\\s*Soc\\.|ACS\\s+Catal\\.|J\\.\\s*Org\\.\\s*Chem\\.)\\s*\\d{4},\\s*\\d+,\\s*[\\d,\\s−-]+$"
+      flags: IGNORECASE
+      description: "JH#14: ACS journal volume/page footer"
+    - pattern: "\\bCommunication\\s+ChemComm\\b|\\bChemComm\\s+Communication\\b"
+      flags: IGNORECASE
+      description: "JH#15: RSC Communication ChemComm header"
+    - pattern: "\\brsc\\.li/\\w+"
+      flags: IGNORECASE
+      description: "JH#16: RSC short URLs"
+    - pattern: "This\\s+journal\\s+is\\s+©.*Royal\\s+Society\\s+of\\s+Chemistry"
+      flags: IGNORECASE
+      description: "JH#17: RSC copyright line"
+    - pattern: "^\\s*Cite\\s+this:"
+      flags: IGNORECASE
+      description: "JH#18: RSC Cite this line"
+    - pattern: "View\\s+Article\\s+Online|View\\s+Journal\\s*\\|\\s*View\\s+Issue"
+      flags: IGNORECASE
+      description: "JH#19: RSC View Article Online banner"
+    - pattern: "^\\s*[A-Z]OMMUNICATION\\b"
+      flags: IGNORECASE
+      description: "JH#20: RSC partial OCR banner"
+  safety_threshold: 150

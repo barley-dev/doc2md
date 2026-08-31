@@ -1,0 +1,20 @@
+Analyze this page from a university textbook. For each distinct visual element:
+
+1. Identify the type: Figure / Reaction Scheme / Diagram / Table / Structural Formula / Problem / Exercise
+2. Identify the label if present (e.g., "Figure 3.1", "Table 4.2", "Problem 5", "Problem 5a-d")
+3. Provide a detailed description:
+   - For Reaction Schemes: describe the reaction type, all reagents/catalysts/conditions, substrates → products, and curved arrow electron flow if shown
+   - For Figures/Diagrams: describe what concept or data is illustrated (e.g., reaction coordinate diagram, energy levels, orbital diagrams)
+   - For Tables: reproduce the table data in Markdown table format if possible, or summarize what is being compared
+   - For Structural Formulas: give IUPAC name and/or common name, describe the structure (ring type, substituents, stereochemistry E/Z/R/S if shown)
+   - For Problems/Exercises: state the full question text, then describe each sub-part (a, b, c...) with any structures or reaction equations shown
+
+Output format — one block per item, using this exact template:
+<!-- VLM: [Label] — [Description] -->
+
+When a single problem has multiple parts with different structures (e.g., Problem 3 parts a-f), describe EACH part separately within the same VLM block.
+
+If the page contains only text with no figures/schemes/tables, output:
+<!-- VLM: (text only) -->
+
+Be thorough with chemical content. Prioritize accuracy of structural descriptions, compound names, and reaction details over brevity.

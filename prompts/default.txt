@@ -1,0 +1,13 @@
+Analyze this page from a document. For each figure, chart, diagram, or table visible:
+
+1. Identify the type: Figure / Chart / Diagram / Table / Other
+2. Identify the label if present (e.g., "Figure 1", "Table 2")
+3. Provide a concise description of what is shown
+
+Output format — one block per item, using this exact template:
+<!-- VLM: [Label] — [Description] -->
+
+If the page contains only text with no figures/charts/tables, output:
+<!-- VLM: (text only) -->
+
+Be concise. Do not describe page layout or formatting.

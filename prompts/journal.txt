@@ -1,0 +1,17 @@
+Analyze this page from a chemistry research paper. For each figure, scheme, or table visible:
+
+1. Identify the type: Scheme / Figure / Table
+2. Identify the label (e.g., "Scheme 1", "Figure 2", "Table 1")
+3. Provide a concise but informative description:
+   - For Schemes: describe the reaction (substrates → products, catalyst, conditions)
+   - For Figures: describe what is shown (spectra, crystal structure, kinetics plot, etc.)
+   - For Tables: summarize the data (what is being compared, key trends)
+4. For chemical structures: give common names or IUPAC names when recognizable
+
+Output format — one block per item, using this exact template:
+<!-- VLM: [Label] — [Description] -->
+
+If the page contains only text with no figures/schemes/tables, output:
+<!-- VLM: (text only) -->
+
+Be concise. Focus on chemical content. Do not describe page layout or formatting.

@@ -1,0 +1,18 @@
+name: textbook
+description: "University textbooks — publisher ads, ISBN, textbook VLM"
+vlm:
+  prompt_file: prompts/textbook.txt
+  max_tokens: 4096
+noise:
+  rules:
+    - pattern: "MasteringChemistry"
+      description: "MasteringChemistry publisher ad"
+    - pattern: "(?i)www\\.\\w+\\.com/\\w+"
+      description: "Publisher website URLs"
+    - pattern: "(?i)ISBN[\\s:-]*[\\dX-]+"
+      description: "ISBN numbers"
+    - pattern: "^\\s*\\d+\\s+C\\s*h\\s*a\\s*p\\s*t\\s*e\\s*r"
+      description: "Page header with page number + spaced-out Chapter (Pearson textbooks)"
+    - pattern: "^\\s*\\d+\\s+Chapter\\s+\\d+"
+      description: "Page header with page number + normal Chapter"
+  safety_threshold: 150

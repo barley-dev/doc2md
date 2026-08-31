@@ -1,0 +1,25 @@
+{
+  "output_dir": "./output",
+  "frontmatter": {
+    "include": true,
+    "fields": ["source_file", "title", "pages", "converted_date", "tool_version"]
+  },
+  "images": {
+    "extract": true,
+    "min_width": 100,
+    "min_height": 100,
+    "format": "png",
+    "subfolder": "images"
+  },
+  "tables": {
+    "extract": true,
+    "fallback_to_image": true
+  },
+  "text": {
+    "heading_detection": true,
+    "remove_headers_footers": true,
+    "remove_page_numbers": true,
+    "body_font_size_tolerance": 0.5
+  },
+  "libreoffice_path": "/Applications/LibreOffice.app/Contents/MacOS/soffice"
+}
